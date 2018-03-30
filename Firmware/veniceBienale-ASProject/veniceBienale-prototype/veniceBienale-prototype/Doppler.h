@@ -1,16 +1,16 @@
 /*
-* IRIn.h
+* Doppler.h
 *
-* Created: 3/24/2018 3:17:11 PM
+* Created: 3/30/2018 4:09:12 PM
 * Author: wes
 */
 
-#include <Arduino.h>
-#ifndef __IRIN_H__
-#define __IRIN_H__
+
+#ifndef __DOPPLER_H__
+#define __DOPPLER_H__
 
 
-class IRIn
+class Doppler
 {
 	//variables
 	public:
@@ -18,34 +18,34 @@ class IRIn
 	private:
 	int inputPin;
 	
-	const int sampleCount = 100;
-	int sampleBeingUpdated = 0;
-	int readings[100];
+	bool debouncedState = false;
 	
-	long readingsSum;
-	int readingsAvg;
+	bool countingMinorDebounce = false;
+	unsigned long minorDebounceTime;
 	
-	int triggerVal;
-	bool triggerBool = true;
-	
-	bool newTrigger = true;
-	unsigned long debounceTime;
-	int debounceLength = 100;
+	bool countingMajorDebounce = false;
+	unsigned long majorDebounceTime;
+	unsigned long recentMajorDebounceTime;
 
 	//functions
 	public:
-	IRIn();
-	IRIn(int _inputPin);
-	IRIn(int _inputPin, int _delay);
-	void fillArray(int _delay);
-	void addReading();
-	int getAverage();
-//	void setTriggerVal(int _triggerVal);
-//	void setTriggerBool(bool _triggerBool);
-// 	void setDebounceLength(int _debounceLength);
-// 	bool debouncedInput();
+	Doppler(int _inputPin);
+	bool analogToBool(int _analogThreshold, bool _invert);
+	bool getState(bool inputState, unsigned long _minorDebounce, unsigned long _majorDebounceLowThres, unsigned long _majorDebounceHighThres);
+	
+	protected:
+
+}; //Doppler
+
+#endif //__DOPPLER_H__
 
 
-}; //IRIn
 
-#endif //__IRIN_H__
+
+// ##### minor debounce
+// reads pin, check if it has detected movement
+// if yes, set wait for reading the pin again in n ms
+// ##### major debounce
+// if movement is still detected, start countingMajorDebounce
+// inside a window of 10 and 20 seconds, if it detects movement, change state
+// if not, reset countingMajorDebounce to last movement detected prior to window
