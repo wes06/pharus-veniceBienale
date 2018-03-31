@@ -17,6 +17,7 @@ class FanChannel
 	public:
 	private:
 	const int controlPin;
+	const int fanDelay;
 	
 	//bool inflating = false;
 	unsigned long inflateStartedMillis;
@@ -28,16 +29,14 @@ class FanChannel
 	//functions
 	public:
 	FanChannel();
-	FanChannel(int _ctrlPin);
+	FanChannel(int _ctrlPin, int _fanDelay):controlPin(_ctrlPin), fanDelay(_fanDelay){};
 	
-	//bool inflateAndHold(int _period, int _inflateValue, int _holdValue);
-	bool inflateAndHold(int _period, int _inflateValue, int _holdValue, int _delay);
+	bool inflateAndHold(int _period, int _inflateValue, int _holdValue);
 	void breathe
 	(
 	int		_periodo,
 	int		_inflateVal,		int			_holdVal,		int		 _deflateVal,		int _restartVal,
 	float	_inflateTime,		float		_holdTime,		float	_deflateTime,
-	int		_delay
 	);
 	//void breatheErratically();
 	

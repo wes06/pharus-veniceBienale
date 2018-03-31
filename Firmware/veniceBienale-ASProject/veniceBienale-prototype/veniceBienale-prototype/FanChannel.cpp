@@ -19,20 +19,20 @@ FanChannel::FanChannel(int _ctrlPin)
 
 // turns fan on with '_inflateValue' for '_period' time, then turns the fan on '_holdValue' permanently
 // _delay is a delay on start up time, should not influence _period
-bool FanChannel::inflateAndHold(int _period, int _inflateValue, int _holdValue, int _delay)
+bool FanChannel::inflateAndHold(int _period, int _inflateValue, int _holdValue)
 {
 	if (inflateAndHoldState == 0){
 		inflateStartedMillis = millis();
 		inflateAndHoldState = 1;
 	}
 	
-	if(inflateAndHoldState == 1 && millis() - inflateStartedMillis >= _delay)
+	if(inflateAndHoldState == 1 && millis() - inflateStartedMillis >= fanDelay)
 	{
 		analogWrite(controlPin, _inflateValue);
 		inflateAndHoldState = 2;
 	}
 	
-	if(inflateAndHoldState == 2 && millis() - inflateStartedMillis > _period - _delay){
+	if(inflateAndHoldState == 2 && millis() - inflateStartedMillis > _period - fanDelay){
 		analogWrite(controlPin, _holdValue);
 		inflateAndHoldState = 3;
 	}
@@ -87,15 +87,14 @@ bool FanChannel::inflateAndHold(int _period, int _inflateValue, int _holdValue, 
 void FanChannel::breathe(
 int _periodo,
 int _inflateVal, int _holdVal, int _deflateVal, int _restartVal,
-float _inflateTime, float _holdTime, float _deflateTime,
-int _delay)
+float _inflateTime, float _holdTime, float _deflateTime)
 {
 	if(breathingState == 0){
 		breathingState++;
 		breathStart = millis();
 	}
 	
-	if(breathingState == 1 && millis() - breathStart >= _delay)
+	if(breathingState == 1 && millis() - breathStart >= fanDelay)
 	{
 		analogWrite(controlPin, _inflateVal);
 		breathingState++;
@@ -107,13 +106,13 @@ int _delay)
 		breathingState++;
 	}
 	
-	if(breathingState == 3 &&  millis() - breathStart > static_cast< float >(_periodo)*(_inflateTime + _holdTime) - _delay)
+	if(breathingState == 3 &&  millis() - breathStart > static_cast< float >(_periodo)*(_inflateTime + _holdTime) - fanDelay)
 	{
 		analogWrite(controlPin,_deflateVal);
 		breathingState++;
 	}
 	
-	if(breathingState == 4 && millis() - breathStart > static_cast< float >(_periodo)*(_inflateTime + _holdTime + _deflateTime) + _delay)
+	if(breathingState == 4 && millis() - breathStart > static_cast< float >(_periodo)*(_inflateTime + _holdTime + _deflateTime) + fanDelay)
 	{
 		analogWrite(controlPin,_restartVal);
 		breathingState++;
