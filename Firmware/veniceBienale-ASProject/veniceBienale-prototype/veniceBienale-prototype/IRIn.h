@@ -16,7 +16,7 @@ class IRIn
 	public:
 	protected:
 	private:
-	int inputPin;
+	const int inputPin;
 	
 	const int sampleCount = 100;
 	int sampleBeingUpdated = 0;
