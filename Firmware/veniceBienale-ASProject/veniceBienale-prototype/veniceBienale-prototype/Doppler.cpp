@@ -22,7 +22,17 @@ bool Doppler::analogToBool(int _analogThreshold, bool _invert){
 }
 
 
-bool Doppler::getState(bool inputState, unsigned long _minorDebounce, unsigned long _majorDebounceLowThres, unsigned long _majorDebounceHighThres){
+
+
+
+// ##### minor debounce
+// reads pin, check if it has detected movement
+// if yes, set wait for reading the pin again in n ms
+// ##### major debounce
+// if movement is still detected, start countingMajorDebounce
+// inside a window of 10 and 20 seconds, if it detects movement, change state
+// if not, reset countingMajorDebounce to last movement detected prior to window
+bool Doppler::getStateLongDebounce(bool inputState, unsigned long _minorDebounce, unsigned long _majorDebounceLowThres, unsigned long _majorDebounceHighThres){
 	
 	if(!countingMajorDebounce)
 	{
@@ -58,4 +68,15 @@ bool Doppler::getState(bool inputState, unsigned long _minorDebounce, unsigned l
 	}
 	
 	return debouncedState;
+}
+
+
+
+
+// sample every 100ms for example
+// for the last 10 seconds, sum how many of the samples were positive
+// if it passes a threshold, change state (can give higher states acording to sample number)
+int Doppler::getStateSumSamples(){
+	
+	
 }
