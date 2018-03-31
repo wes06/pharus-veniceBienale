@@ -89,7 +89,6 @@ int _periodo,
 int _inflateVal, int _holdVal, int _deflateVal, int _restartVal,
 float _inflateTime, float _holdTime, float _deflateTime,
 int _delay)
-
 {
 	if(breathingState == 0){
 		breathingState++;
@@ -114,7 +113,7 @@ int _delay)
 		breathingState++;
 	}
 	
-	if(breathingState == 4 && millis() - breathStart > _delay + static_cast< float >(_periodo)*(_inflateTime + _holdTime + _deflateTime) + _delay)
+	if(breathingState == 4 && millis() - breathStart > static_cast< float >(_periodo)*(_inflateTime + _holdTime + _deflateTime) + _delay)
 	{
 		analogWrite(controlPin,_restartVal);
 		breathingState++;
@@ -126,5 +125,3 @@ int _delay)
 	}
 	
 }
-
-
