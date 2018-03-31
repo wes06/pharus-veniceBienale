@@ -12,9 +12,12 @@
 
 #define LED1 8
 
-#define FAN_PIN1 5		//connector by power input
-#define FAN_PIN2 10		//connector in the center
-#define FAN_PIN3 6		//connector far from power input
+#define FAN1_PIN 5		//connector by power input
+#define FAN1_DELAY 0
+#define FAN2_PIN 10		//connector in the center
+#define FAN2_DELAY 30
+#define FAN3_PIN 6		//connector far from power input
+#define FAN3_DELAY 60
 
 #define MUX_CONTROL 2	//ctrl pin for Analog Mux Switches (ABC)
 #define MUX_CONTROL_DEFAULT LOW
@@ -55,7 +58,6 @@
 #define FAN1_BREATHE_INFLATETIME 0.2
 #define FAN1_BREATHE_HOLDTIME 0.3
 #define FAN1_BREATHE_DEFLATETIME 0.3
-#define FAN1_BREATHE_DELAY 0
 
 
 #define FAN2_BREATHE_PERIOD 5000
@@ -66,7 +68,6 @@
 #define FAN2_BREATHE_INFLATETIME 0.2
 #define FAN2_BREATHE_HOLDTIME 0.3
 #define FAN2_BREATHE_DEFLATETIME 0.3
-#define FAN2_BREATHE_DELAY 30
 
 
 #define FAN3_BREATHE_PERIOD 5000
@@ -77,7 +78,6 @@
 #define FAN3_BREATHE_INFLATETIME 0.2
 #define FAN3_BREATHE_HOLDTIME 0.3
 #define FAN3_BREATHE_DEFLATETIME 0.3
-#define FAN3_BREATHE_DELAY 60
 
 
 
@@ -92,9 +92,9 @@ PCB_LED fbLED2(PIN_LED_RXL);
 IRIn dist1(IR_PIN1,10);
 IRIn dist2(IR_PIN2,10);
 
-FanChannel fan1(FAN_PIN1);
-FanChannel fan2(FAN_PIN2);
-FanChannel fan3(FAN_PIN3);
+FanChannel fan1(FAN1_PIN, FAN1_DELAY);
+FanChannel fan2(FAN2_PIN, FAN2_DELAY);
+FanChannel fan3(FAN3_PIN, FAN3_DELAY);
 
 boolean fan1inf = true;
 bool fan2inf = true;
@@ -165,30 +165,22 @@ void switchStates(){
 		case 0:
 		holdStarted = true;
 		if(fan1inf || fan3inf || fan2inf){
-			if(fan1inf) fan1inf = fan1.inflateAndHold(FAN1_INFHOLD_PERIOD, FAN1_INFHOLD_INFLATEVAL,FAN1_INFHOLD_HOLDVAL, FAN1_INFHOLD_DELAY);
-			if(fan2inf) fan2inf = fan2.inflateAndHold(FAN2_INFHOLD_PERIOD, FAN2_INFHOLD_INFLATEVAL,FAN2_INFHOLD_HOLDVAL, FAN2_INFHOLD_DELAY);
-			if(fan3inf) fan3inf = fan3.inflateAndHold(FAN3_INFHOLD_PERIOD, FAN3_INFHOLD_INFLATEVAL,FAN3_INFHOLD_HOLDVAL, FAN3_INFHOLD_DELAY);
+			if(fan1inf) fan1inf = fan1.inflateAndHold(FAN1_INFHOLD_PERIOD, FAN1_INFHOLD_INFLATEVAL,FAN1_INFHOLD_HOLDVAL);
+			if(fan2inf) fan2inf = fan2.inflateAndHold(FAN2_INFHOLD_PERIOD, FAN2_INFHOLD_INFLATEVAL,FAN2_INFHOLD_HOLDVAL);
+			if(fan3inf) fan3inf = fan3.inflateAndHold(FAN3_INFHOLD_PERIOD, FAN3_INFHOLD_INFLATEVAL,FAN3_INFHOLD_HOLDVAL);
 		}
 		break;
 		
 
 
-		case 1:		fan1.breathe(		FAN1_BREATHE_PERIOD,		FAN1_BREATHE_INFLATEVAL,	FAN1_BREATHE_HOLDVAL,	FAN1_BREATHE_DEFLATEVAL,	FAN1_BREATHE_RESTARTVAL,		FAN1_BREATHE_INFLATETIME,	FAN1_BREATHE_HOLDTIME,	FAN1_BREATHE_DEFLATETIME,		FAN1_BREATHE_DELAY);		fan2.breathe(
+		case 1:		fan1.breathe(		FAN1_BREATHE_PERIOD,		FAN1_BREATHE_INFLATEVAL,	FAN1_BREATHE_HOLDVAL,	FAN1_BREATHE_DEFLATEVAL,	FAN1_BREATHE_RESTARTVAL,		FAN1_BREATHE_INFLATETIME,	FAN1_BREATHE_HOLDTIME,	FAN1_BREATHE_DEFLATETIME);		fan2.breathe(
 		FAN2_BREATHE_PERIOD,
 		FAN2_BREATHE_INFLATEVAL,	FAN2_BREATHE_HOLDVAL,	FAN2_BREATHE_DEFLATEVAL,	FAN2_BREATHE_RESTARTVAL,
-		FAN2_BREATHE_INFLATETIME,	FAN2_BREATHE_HOLDTIME,	FAN2_BREATHE_DEFLATETIME,
-		FAN2_BREATHE_DELAY);		
+		FAN2_BREATHE_INFLATETIME,	FAN2_BREATHE_HOLDTIME,	FAN2_BREATHE_DEFLATETIME);		
 		fan3.breathe(
 		FAN3_BREATHE_PERIOD,
 		FAN3_BREATHE_INFLATEVAL,	FAN3_BREATHE_HOLDVAL,	FAN3_BREATHE_DEFLATEVAL,	FAN3_BREATHE_RESTARTVAL,
-		FAN3_BREATHE_INFLATETIME,	FAN3_BREATHE_HOLDTIME,	FAN3_BREATHE_DEFLATETIME,
-		FAN3_BREATHE_DELAY);
-		break;
-		
-		
-		case 2:
-		break;
-		case 3:
+		FAN3_BREATHE_INFLATETIME,	FAN3_BREATHE_HOLDTIME,	FAN3_BREATHE_DEFLATETIME);
 		break;
 	} // switch
 }
@@ -230,8 +222,10 @@ void setup()
 void loop()
 {
 	for(;;){
-		// heartBeat, aka the board is running
+		// heartBeats, aka the board is running
 		fbLED1.heartBeatAnalog(30,255,1,100);
+		if(state == 0) fbLED2.heartBeatDigital(500,0.5);
+		if(state == 1) fbLED2.heartBeatDigital(500,0);	
 		
 		// add readings to the arrays
 		dist1.addReading();
@@ -243,7 +237,6 @@ void loop()
 		// does what was decided in detectStates()
 		switchStates();
 		
-		if(state == 0) fbLED2.heartBeatDigital(500,0.5);
-		if(state == 1) fbLED2.heartBeatDigital(500,0);
+
 	}	//  for(;;)
 }	// loop()
