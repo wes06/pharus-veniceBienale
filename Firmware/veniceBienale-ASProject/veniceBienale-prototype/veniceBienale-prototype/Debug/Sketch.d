@@ -151,7 +151,7 @@ Sketch.d Sketch.o: .././Sketch.cpp \
  ..\\..\ArduinoCore\include\core/RingBuffer.h \
  ..\\..\ArduinoCore\include\core/USB/USB_host.h \
  ..\\..\ArduinoCore\include\core/USB/samd21_host.h .././FanChannel.h \
- .././IRIn.h
+ .././PCB_LED.h .././IRIn.h
 
 ..\\..\ArduinoCore\include\core/Arduino.h:
 
@@ -458,5 +458,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ..\\..\ArduinoCore\include\core/USB/samd21_host.h:
 
 .././FanChannel.h:
+
+.././PCB_LED.h:
 
 .././IRIn.h:

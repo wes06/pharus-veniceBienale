@@ -16,7 +16,7 @@ class FanChannel
 	//variables
 	public:
 	private:
-	int controlPin;
+	const int controlPin;
 	
 	//bool inflating = false;
 	unsigned long inflateStartedMillis;

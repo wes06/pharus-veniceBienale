@@ -10,16 +10,16 @@
 
 
 IRIn::IRIn(int _inputPin)
+:inputPin(_inputPin)
 {
-	inputPin = _inputPin;
 	pinMode(inputPin, INPUT);
 	this->fillArray(0);
 }
 
 
 IRIn::IRIn(int _inputPin, int _delay)
+:inputPin(_inputPin)
 {
-	inputPin = _inputPin;
 	pinMode(inputPin, INPUT);
 	this->fillArray(_delay);
 }
