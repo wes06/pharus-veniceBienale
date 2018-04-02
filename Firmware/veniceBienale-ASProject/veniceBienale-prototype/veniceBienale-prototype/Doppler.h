@@ -5,6 +5,7 @@
 * Author: wes
 */
 
+#include <Arduino.h>
 
 #ifndef __DOPPLER_H__
 #define __DOPPLER_H__

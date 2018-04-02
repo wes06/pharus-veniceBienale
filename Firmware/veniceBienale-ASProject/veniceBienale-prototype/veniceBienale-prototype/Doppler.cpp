@@ -5,7 +5,7 @@
 * Author: wes
 */
 
-
+#include <Arduino.h>
 #include "Doppler.h"
 
 // default constructor
@@ -18,7 +18,7 @@ Doppler::Doppler(int _inputPin)
 
 
 bool Doppler::analogToBool(int _analogThreshold, bool _invert){
-	return (analogRead(inputPin) > _analogThreshold) ^= _invert; // threshold XOR invert
+	//return (analogRead(inputPin) > _analogThreshold) ^= _invert; // threshold XOR invert
 }
 
 
@@ -41,7 +41,7 @@ bool Doppler::getStateLongDebounce(bool inputState, unsigned long _minorDebounce
 			minorDebounceTime = millis();
 		}
 		
-		if(inputState && countingMinorDebounce && > millis() - minorDebounceTime > _minorDebounce){
+		if(inputState && countingMinorDebounce && millis() - minorDebounceTime > _minorDebounce){
 			majorDebounceTime = minorDebounceTime;
 			countingMajorDebounce = true;
 			countingMinorDebounce = false;
