@@ -8,8 +8,8 @@
 #include "FanChannel.h"
 
 // default constructor
-FanChannel::FanChannel(int _ctrlPin)
-: controlPin(_ctrlPin)
+FanChannel::FanChannel(int _ctrlPin, int _fanDelay)
+: controlPin(_ctrlPin), fanDelay(_fanDelay)
 {
 	pinMode(controlPin, OUTPUT);
 } //FanChannel
