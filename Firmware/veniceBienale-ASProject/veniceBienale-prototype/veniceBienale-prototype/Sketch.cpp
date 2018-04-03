@@ -111,8 +111,8 @@ bool holdStarted = false;
 
 
 void detectStates(){
-	volatile int dist2log = dist2.getAverage();
-	volatile int dist1log = dist1.getAverage();
+	//volatile int dist2log = dist2.getAverage();
+	//volatile int dist1log = dist1.getAverage();
 	//nothing detected
 	if(dist1.getAverage() < DIST1_THRES && dist2.getAverage() < DIST2_THRES)
 	{
@@ -171,8 +171,6 @@ void switchStates(){
 		}
 		break;
 		
-
-
 		case 1:		fan1.breathe(		FAN1_BREATHE_PERIOD,		FAN1_BREATHE_INFLATEVAL,	FAN1_BREATHE_HOLDVAL,	FAN1_BREATHE_DEFLATEVAL,	FAN1_BREATHE_RESTARTVAL,		FAN1_BREATHE_INFLATETIME,	FAN1_BREATHE_HOLDTIME,	FAN1_BREATHE_DEFLATETIME);		fan2.breathe(
 		FAN2_BREATHE_PERIOD,
 		FAN2_BREATHE_INFLATEVAL,	FAN2_BREATHE_HOLDVAL,	FAN2_BREATHE_DEFLATEVAL,	FAN2_BREATHE_RESTARTVAL,
@@ -196,7 +194,6 @@ void setup()
 	pinMode(PIN_LED_TXL,OUTPUT);
 	digitalWrite(PIN_LED_TXL,LOW);
 	
-	
 	// set MUX to point to connectors instead of SMD pads
 	pinMode(MUX_CONTROL,OUTPUT);
 	digitalWrite(MUX_CONTROL,MUX_CONTROL_DEFAULT);
@@ -210,33 +207,44 @@ void setup()
 		delay(100);
 	}
 	
-		if(fan1inf || fan3inf || fan2inf){
-			if(fan1inf) fan1inf = fan1.inflateAndHold(FAN1_INFHOLD_LENGTH, FAN1_INFHOLD_INFLATEVAL,FAN1_INFHOLD_HOLDVAL);
-			if(fan2inf) fan2inf = fan2.inflateAndHold(FAN2_INFHOLD_LENGTH, FAN2_INFHOLD_INFLATEVAL,FAN2_INFHOLD_HOLDVAL);
-			if(fan3inf) fan3inf = fan3.inflateAndHold(FAN3_INFHOLD_LENGTH, FAN3_INFHOLD_INFLATEVAL,FAN3_INFHOLD_HOLDVAL);
-		}
+	if(fan1inf || fan3inf || fan2inf){
+		if(fan1inf) fan1inf = fan1.inflateAndHold(FAN1_INFHOLD_LENGTH, FAN1_INFHOLD_INFLATEVAL,FAN1_INFHOLD_HOLDVAL);
+		if(fan2inf) fan2inf = fan2.inflateAndHold(FAN2_INFHOLD_LENGTH, FAN2_INFHOLD_INFLATEVAL,FAN2_INFHOLD_HOLDVAL);
+		if(fan3inf) fan3inf = fan3.inflateAndHold(FAN3_INFHOLD_LENGTH, FAN3_INFHOLD_INFLATEVAL,FAN3_INFHOLD_HOLDVAL);
+	}
+	pinMode(A1, INPUT);
 
 }
 
 
 void loop()
 {
-	for(;;){
-		// heartBeats, aka the board is running
-		fbLED1.heartBeatAnalog(30,255,1,100);
-		if(state == 0) fbLED2.heartBeatDigital(500,0.5);
-		if(state == 1) fbLED2.heartBeatDigital(500,0);	
-		
-		// add readings to the arrays
-		dist1.addReading();
-		dist2.addReading();
+	
+	if(analogRead(A1) > 400){
+		analogWrite(LED1,0);
+	}
+	else{
+		analogWrite(LED1,255);
+	}
+	
+	if(false){
+		for(;;){
+			// heartBeats, aka the board is running
+			fbLED1.heartBeatAnalog(30,255,1,100);
+			if(state == 0) fbLED2.heartBeatDigital(500,0.5);
+			if(state == 1) fbLED2.heartBeatDigital(500,0);
+			
+			// add readings to the arrays
+			dist1.addReading();
+			dist2.addReading();
 
-		// use the readings to decide what to do
-		detectStates();
+			// use the readings to decide what to do
+			detectStates();
 
-		// does what was decided in detectStates()
-		switchStates();
-		
+			// does what was decided in detectStates()
+			switchStates();
+			
 
-	}	//  for(;;)
+		}	//  for(;;)
+	}
 }	// loop()
