@@ -29,15 +29,13 @@ class FanChannel
 	//functions
 	public:
 	FanChannel();
-	FanChannel(int _ctrlPin, int _fanDelay):controlPin(_ctrlPin), fanDelay(_fanDelay){};
+	FanChannel(int _ctrlPin, int _fanDelay);//:controlPin(_ctrlPin), fanDelay(_fanDelay)
 	
 	bool inflateAndHold(int _period, int _inflateValue, int _holdValue);
-	void breathe
-	(
-	int		_periodo,
-	int		_inflateVal,		int			_holdVal,		int		 _deflateVal,		int _restartVal,
-	float	_inflateTime,		float		_holdTime,		float	_deflateTime,
-	);
+	void breathe(
+	int _periodo,
+	int _inflateVal, int _holdVal, int _deflateVal, int _restartVal,
+	float _inflateTime, float _holdTime, float _deflateTime);
 	//void breatheErratically();
 	
 	private:
