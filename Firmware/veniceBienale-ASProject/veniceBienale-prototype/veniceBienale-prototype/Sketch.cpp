@@ -1,10 +1,4 @@
-﻿#include <Arduino.h>
-#include "FanChannel.h"
-#include "PCB_LED.h"
-#include "IRIn.h"
-
-
-/*######################################################################
+﻿/*######################################################################
 
 
 
@@ -83,6 +77,14 @@
 
 
 //######################################################################
+
+#include <Arduino.h>
+#include "FanChannel.h"
+#include "PCB_LED.h"
+#include "IRIn.h"
+
+
+
 
 
 // find out how to declare a class and initialize it later
