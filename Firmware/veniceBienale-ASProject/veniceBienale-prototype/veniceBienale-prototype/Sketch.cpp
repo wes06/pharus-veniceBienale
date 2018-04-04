@@ -1,4 +1,5 @@
 ﻿#include <Arduino.h>
+#include "Doppler.h"
 #include "FanChannel.h"
 #include "PCB_LED.h"
 #include "IRIn.h"
@@ -22,8 +23,8 @@
 #define MUX_CONTROL 2	//ctrl pin for Analog Mux Switches (ABC)
 #define MUX_CONTROL_DEFAULT LOW
 
-#define IR_PIN1 A5	//
-#define IR_PIN2 A1	//
+#define DOPPLER_PIN A1	//
+#define DOPPLER_READINGS_PERSEC 10
 
 #define DIST1_THRES 400
 #define DIST2_THRES 400
@@ -89,12 +90,11 @@ PCB_LED fbLED1(LED1);
 PCB_LED fbLED2(PIN_LED_RXL);
 //PCB_LED fbLED1;
 
-IRIn dist1(IR_PIN1,10);
-IRIn dist2(IR_PIN2,10);
-
 FanChannel fan1(FAN1_PIN, FAN1_DELAY);
 FanChannel fan2(FAN2_PIN, FAN2_DELAY);
 FanChannel fan3(FAN3_PIN, FAN3_DELAY);
+
+Doppler doppler(DOPPLER_PIN, DOPPLER_READINGS_PERSEC);
 
 boolean fan1inf = true;
 bool fan2inf = true;
@@ -111,51 +111,9 @@ bool holdStarted = false;
 
 
 void detectStates(){
-	//volatile int dist2log = dist2.getAverage();
-	//volatile int dist1log = dist1.getAverage();
-	//nothing detected
-	if(dist1.getAverage() < DIST1_THRES && dist2.getAverage() < DIST2_THRES)
-	{
-		
-		// keep inflated after 2secs of debounce
-		if (!state0Waiting)
-		{
-			state0Millis = millis();
-			state0Waiting = true;
-		}
-		else if(millis() - state0Millis > STATE0_DEBOUNCE_LENGTH){
-			state = 0;
-			// if it hasn't started inflating, reset the vars
-			// if it started inflating, will not set fanXinf to true
-			if(!holdStarted){
-				fan1inf = true;
-				fan2inf = true;
-				fan3inf = true;
-			}
-		}
-	}
-	else
-	{
-		state0Waiting = false;
-		holdStarted = false;
-	} // end of nothing detected
-	
-	// something detected
-	if(dist1.getAverage() >= DIST1_THRES || dist2.getAverage() >= DIST2_THRES){
-		
-		// start breathing after 2 secs of debounce
-		if (!state1Waiting)
-		{
-			state1Millis = millis();
-			state1Waiting = true;
-		}
-		else if(millis() - state1Millis > STATE1_DEBOUNCE_LENGTH) state = 1;
-	}
-	else
-	{
-		state1Waiting = false;
-	} // end of something detected
-	
+
+
+
 }
 
 
@@ -212,7 +170,6 @@ void setup()
 		if(fan2inf) fan2inf = fan2.inflateAndHold(FAN2_INFHOLD_LENGTH, FAN2_INFHOLD_INFLATEVAL,FAN2_INFHOLD_HOLDVAL);
 		if(fan3inf) fan3inf = fan3.inflateAndHold(FAN3_INFHOLD_LENGTH, FAN3_INFHOLD_INFLATEVAL,FAN3_INFHOLD_HOLDVAL);
 	}
-	pinMode(A1, INPUT);
 
 }
 
@@ -220,31 +177,25 @@ void setup()
 void loop()
 {
 	
-	if(analogRead(A1) > 400){
-		analogWrite(LED1,0);
-	}
-	else{
-		analogWrite(LED1,255);
-	}
-	
-	if(false){
-		for(;;){
-			// heartBeats, aka the board is running
-			fbLED1.heartBeatAnalog(30,255,1,100);
-			if(state == 0) fbLED2.heartBeatDigital(500,0.5);
-			if(state == 1) fbLED2.heartBeatDigital(500,0);
-			
-			// add readings to the arrays
-			dist1.addReading();
-			dist2.addReading();
+	for(;;){
+		// heartBeats, aka the board is running
+		fbLED1.heartBeatAnalog(30,255,1,100);
+		if(state == 0) fbLED2.heartBeatDigital(500,0.5);
+		if(state == 1) fbLED2.heartBeatDigital(500,0);
+		
+// 		// add readings to the arrays
+// 		dist1.addReading();
+// 		dist2.addReading();
 
-			// use the readings to decide what to do
-			detectStates();
+		doppler.addReading();
 
-			// does what was decided in detectStates()
-			switchStates();
-			
+		// use the readings to decide what to do
+		detectStates();
 
-		}	//  for(;;)
-	}
+		// does what was decided in detectStates()
+		switchStates();
+		
+
+	}	//  for(;;)
+
 }	// loop()
