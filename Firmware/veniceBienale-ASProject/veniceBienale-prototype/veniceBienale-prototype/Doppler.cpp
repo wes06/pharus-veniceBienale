@@ -86,8 +86,10 @@ void Doppler::addReading(){
 
 // sample every 100ms for example
 // for the last 10 seconds, sum how many of the samples were positive
-// if it passes a threshold, change state (can give higher states according to sample number)
+// if it passes a threshold, change state
 int Doppler::getStateSumSamples(){
+	
+	
 	
 	
 }
