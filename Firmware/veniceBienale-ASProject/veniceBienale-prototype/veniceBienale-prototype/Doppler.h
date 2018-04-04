@@ -10,6 +10,7 @@
 #ifndef __DOPPLER_H__
 #define __DOPPLER_H__
 
+#define DOPPLER_ARRAY_LENGTH 1000
 
 class Doppler
 {
@@ -17,7 +18,14 @@ class Doppler
 	public:
 	protected:
 	private:
-	int inputPin;
+	const int inputPin;
+	const int readingPeriod;
+	
+	bool nextReading = true;
+	unsigned long dopplerCurrentReadingTime = 0;
+	
+	int dopplerSampleBeingUpdated = 0;
+	bool dopplerArray[DOPPLER_ARRAY_LENGTH];
 	
 	bool debouncedState = false;
 	
@@ -30,7 +38,9 @@ class Doppler
 
 	//functions
 	public:
-	Doppler(int _inputPin);
+	Doppler(int _inputPin, int _readingsPerSec);
+	void addReading();
+	
 	bool analogToBool(int _analogThreshold, bool _invert);
 	bool getStateLongDebounce(bool inputState, unsigned long _minorDebounce, unsigned long _majorDebounceLowThres, unsigned long _majorDebounceHighThres);
 	int getStateSumSamples();

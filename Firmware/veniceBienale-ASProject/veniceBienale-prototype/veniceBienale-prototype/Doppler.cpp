@@ -9,16 +9,16 @@
 #include "Doppler.h"
 
 // default constructor
-Doppler::Doppler(int _inputPin)
+Doppler::Doppler(int _inputPin, int _readingsPerSec)
+:inputPin(_inputPin), readingPeriod(1000/_readingsPerSec) 
 {
-	inputPin = _inputPin;
 	pinMode(inputPin, INPUT);
 	//this->fillArray(0);
 } //Doppler
 
 
 bool Doppler::analogToBool(int _analogThreshold, bool _invert){
-	//return (analogRead(inputPin) > _analogThreshold) ^= _invert; // threshold XOR invert
+	return (analogRead(inputPin) > _analogThreshold);
 }
 
 
@@ -72,10 +72,21 @@ bool Doppler::getStateLongDebounce(bool inputState, unsigned long _minorDebounce
 
 
 
+void Doppler::addReading(){	
+	if(millis() - dopplerCurrentReadingTime > readingPeriod){
+		dopplerCurrentReadingTime = millis();
+		dopplerArray[dopplerSampleBeingUpdated] = this->analogToBool(300, false);
+		
+		dopplerSampleBeingUpdated++;
+		if (dopplerSampleBeingUpdated==DOPPLER_ARRAY_LENGTH) dopplerSampleBeingUpdated;
+	}
+	
+}
+
 
 // sample every 100ms for example
 // for the last 10 seconds, sum how many of the samples were positive
-// if it passes a threshold, change state (can give higher states acording to sample number)
+// if it passes a threshold, change state (can give higher states according to sample number)
 int Doppler::getStateSumSamples(){
 	
 	
