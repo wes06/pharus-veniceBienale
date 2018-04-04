@@ -9,6 +9,7 @@
 #ifndef __IRIN_H__
 #define __IRIN_H__
 
+#define SAMPLE_COUNT 100
 
 class IRIn
 {
@@ -17,10 +18,8 @@ class IRIn
 	protected:
 	private:
 	const int inputPin;
-	
-	const int sampleCount = 100;
 	int sampleBeingUpdated = 0;
-	int readings[100];
+	int readings[SAMPLE_COUNT];
 	
 	long readingsSum;
 	int readingsAvg;
