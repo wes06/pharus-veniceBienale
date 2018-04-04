@@ -83,6 +83,7 @@
 //######################################################################
 
 #include <Arduino.h>
+#include "Doppler.h"
 #include "FanChannel.h"
 #include "PCB_LED.h"
 #include "IRIn.h"
