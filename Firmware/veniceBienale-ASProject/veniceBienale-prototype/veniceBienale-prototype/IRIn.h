@@ -40,10 +40,6 @@ class IRIn
 	void fillArray(int _delay);
 	void addReading();
 	int getAverage();
-//	void setTriggerVal(int _triggerVal);
-//	void setTriggerBool(bool _triggerBool);
-// 	void setDebounceLength(int _debounceLength);
-// 	bool debouncedInput();
 
 
 }; //IRIn

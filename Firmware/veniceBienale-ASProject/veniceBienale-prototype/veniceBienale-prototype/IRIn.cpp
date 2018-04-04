@@ -52,39 +52,3 @@ int IRIn::getAverage()
 	
 	return readingsAvg;
 }
-
-// void IRIn::setTriggerVal(int _triggerVal)
-// {
-// 	triggerVal = _triggerVal;
-// }
-// 
-// void IRIn::setTriggerBool(bool _triggerBool)
-// {
-// 	triggerBool = _triggerBool;
-// }
-
-// void IRIn::setDebounceLength(int _debounceLength)
-// {
-// 	debounceLength = _debounceLength;
-// }
-// 
-// bool IRIn::debouncedInput(){
-// 	bool _debouncedInput = false;
-// 	if ((getAverage() > triggerVal)==triggerBool && newTrigger)
-// 	{
-// 		debounceTime = millis();
-// 		newTrigger = false;
-// 	}
-// 	
-// 	if((getAverage() > triggerVal)==triggerBool && (millis() - debounceTime > debounceLength)){
-// 		_debouncedInput = true;
-// 	}
-// 	
-// 	if((getAverage() <= triggerVal)==triggerBool){
-// 		newTrigger = true;
-// 		_debouncedInput = false;
-// 	}
-// 	return _debouncedInput;
-// }
-// 
-
