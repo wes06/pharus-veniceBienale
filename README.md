@@ -1,4 +1,4 @@
-# pharus-veniceBienale
+# pharus-veniceBiennale
 
-Fan controller for interactive installation by Studio Pharus at Venice Bienale 2018.
+Fan controller for interactive installation by Studio Pharus at Venice Biennale 2018.
 
