@@ -44,43 +44,6 @@ bool FanChannel::inflateAndHold(int _period, int _inflateValue, int _holdValue)
 }
 
 
-// this attempts a ramp down implementation after the fan was turned on for X amount of time
-//Fan turns on and off
-// void FanChannel::breathe(int _inflateValue, int _inflateTime, int _holdValue, int _periodo, float _dutyCycle, int _delay)
-// {
-// 	if(breathingState == 0){
-// 		breathingState++;
-// 		breathStart = millis();
-// 	}
-// 	if(breathingState == 1 && millis() - breathStart >= _delay)
-// 	{
-// 		//if _delay and inflateTime has passed, move on to holdValue and wait for next state.
-// 		//else, just keep on inflateValue
-// 		if(millis() - breathStart >= (_delay+_inflateTime))
-// 		{
-// 			analogWrite(controlPin, _holdValue);
-// 			breathingState++;
-// 		}
-// 		else
-// 		{
-// 			analogWrite(controlPin, _inflateValue);
-// 		}
-//
-// 	}
-// 	if(breathingState == 2 &&  millis() - breathStart > static_cast< float >((_periodo)*_dutyCycle))
-// 	{
-// 		breathStart = millis();
-// 		breathingState++;
-// 		analogWrite(controlPin,0);
-// 	}
-// 	if(breathingState == 3 && millis() - breathStart > static_cast< float >((_periodo)*(1.0f-_dutyCycle)))
-// 	{
-// 		breathingState = 0;
-// 	}
-// }
-
-
-
 
 
 //Fan turns on and off
@@ -122,5 +85,4 @@ float _inflateTime, float _holdTime, float _deflateTime)
 	{
 		breathingState= 0;
 	}
-	
 }
