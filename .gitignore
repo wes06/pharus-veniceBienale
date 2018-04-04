@@ -21,3 +21,6 @@
 
 #User Specific Files
 *.atsuo
+
+# Visual Studio 2015 cache/options directory
+.vs/
