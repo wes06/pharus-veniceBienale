@@ -1,4 +1,4 @@
-## To do's
+## To dos
 
  - Trocar a conexão da fonte do mux para 5V ao invés de 3.3V.
  - Lvl shifter para ABC do mux

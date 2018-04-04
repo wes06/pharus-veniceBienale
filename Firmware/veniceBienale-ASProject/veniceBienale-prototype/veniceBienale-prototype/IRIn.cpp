@@ -27,7 +27,7 @@ IRIn::IRIn(int _inputPin, int _delay)
 
 void IRIn::fillArray(int _delay)
 {
-	for (int i = 0; i < sampleCount; i++)
+	for (int i = 0; i < SAMPLE_COUNT; i++)
 	{
 		readings[i] = analogRead(inputPin);
 		if(delay!=0) delay(_delay);
@@ -38,53 +38,17 @@ void IRIn::addReading()
 {
 	readings[sampleBeingUpdated] = analogRead(inputPin);
 	sampleBeingUpdated++;
-	if(sampleBeingUpdated >= sampleCount) sampleBeingUpdated = 0;
+	if(sampleBeingUpdated >= SAMPLE_COUNT) sampleBeingUpdated = 0;
 }
 
 int IRIn::getAverage()
 {
 	readingsSum = 0;
-	for (int i = 0; i < sampleCount; i++)
+	for (int i = 0; i < SAMPLE_COUNT; i++)
 	{
 		readingsSum += readings[i];
 	}
-	readingsAvg = readingsSum/sampleCount;
+	readingsAvg = readingsSum/SAMPLE_COUNT;
 	
 	return readingsAvg;
 }
-
-// void IRIn::setTriggerVal(int _triggerVal)
-// {
-// 	triggerVal = _triggerVal;
-// }
-// 
-// void IRIn::setTriggerBool(bool _triggerBool)
-// {
-// 	triggerBool = _triggerBool;
-// }
-
-// void IRIn::setDebounceLength(int _debounceLength)
-// {
-// 	debounceLength = _debounceLength;
-// }
-// 
-// bool IRIn::debouncedInput(){
-// 	bool _debouncedInput = false;
-// 	if ((getAverage() > triggerVal)==triggerBool && newTrigger)
-// 	{
-// 		debounceTime = millis();
-// 		newTrigger = false;
-// 	}
-// 	
-// 	if((getAverage() > triggerVal)==triggerBool && (millis() - debounceTime > debounceLength)){
-// 		_debouncedInput = true;
-// 	}
-// 	
-// 	if((getAverage() <= triggerVal)==triggerBool){
-// 		newTrigger = true;
-// 		_debouncedInput = false;
-// 	}
-// 	return _debouncedInput;
-// }
-// 
-

@@ -14,10 +14,11 @@
 #define LED1 8
 
 #define FAN1_PIN 5		//connector by power input
-#define FAN1_DELAY 0
 #define FAN2_PIN 10		//connector in the center
-#define FAN2_DELAY 30
 #define FAN3_PIN 6		//connector far from power input
+
+#define FAN1_DELAY 0
+#define FAN2_DELAY 30
 #define FAN3_DELAY 60
 
 #define MUX_CONTROL 2	//ctrl pin for Analog Mux Switches (ABC)
@@ -26,8 +27,8 @@
 #define DOPPLER_PIN A1	//
 #define DOPPLER_READINGS_PERSEC 10
 
-#define DIST1_THRES 400
-#define DIST2_THRES 400
+#define DIST1_THRES 340
+#define DIST2_THRES 340
 
 #define STATE0_DEBOUNCE_LENGTH 2000
 #define STATE1_DEBOUNCE_LENGTH 2000
