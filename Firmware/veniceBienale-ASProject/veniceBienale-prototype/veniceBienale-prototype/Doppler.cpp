@@ -9,8 +9,8 @@
 #include "Doppler.h"
 
 // default constructor
-Doppler::Doppler(int _inputPin, int _readingsPerSec)
-:inputPin(_inputPin), readingPeriod(1000/_readingsPerSec) 
+Doppler::Doppler(int _inputPin)
+:inputPin(_inputPin), readingPeriod(1000/DOPPLER_READINGS_PERSEC) 
 {
 	pinMode(inputPin, INPUT);
 	//this->fillArray(0);

@@ -10,7 +10,14 @@
 #ifndef __DOPPLER_H__
 #define __DOPPLER_H__
 
-#define DOPPLER_ARRAY_LENGTH 1000
+#ifndef DOPPLER_ARRAY_LENGTH
+#define DOPPLER_ARRAY_LENGTH 4000
+#endif
+
+#ifndef DOPPLER_READINGS_PERSEC
+#define DOPPLER_READINGS_PERSEC 100
+#endif
+
 
 class Doppler
 {
@@ -38,7 +45,7 @@ class Doppler
 
 	//functions
 	public:
-	Doppler(int _inputPin, int _readingsPerSec);
+	Doppler(int _inputPin);
 	void addReading();
 	
 	bool analogToBool(int _analogThreshold, bool _invert);

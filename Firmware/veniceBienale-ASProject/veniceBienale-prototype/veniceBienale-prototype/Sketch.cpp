@@ -25,7 +25,10 @@
 #define MUX_CONTROL_DEFAULT LOW
 
 #define DOPPLER_PIN A1	//
+
+#define DOPPLER_READINGS_HISTORY 10 // amount of seconds to keep readings of the doppler sensor for
 #define DOPPLER_READINGS_PERSEC 10
+#define DOPPLER_ARRAY_LENGTH (DOPPLER_READINGS_HISTORY*DOPPLER_READINGS_PERSEC)
 
 #define DIST1_THRES 340
 #define DIST2_THRES 340
@@ -95,7 +98,7 @@ FanChannel fan1(FAN1_PIN, FAN1_DELAY);
 FanChannel fan2(FAN2_PIN, FAN2_DELAY);
 FanChannel fan3(FAN3_PIN, FAN3_DELAY);
 
-Doppler doppler(DOPPLER_PIN, DOPPLER_READINGS_PERSEC);
+Doppler doppler(DOPPLER_PIN);
 
 boolean fan1inf = true;
 bool fan2inf = true;
