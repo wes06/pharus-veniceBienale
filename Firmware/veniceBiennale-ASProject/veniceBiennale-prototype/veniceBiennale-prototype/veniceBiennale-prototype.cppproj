@@ -281,6 +281,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Doppler.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Doppler.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="FanChannel.cpp">
       <SubType>compile</SubType>
     </Compile>

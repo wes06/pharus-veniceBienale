@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Atmel Studio Solution File, Format Version 11.00
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "ArduinoCore", "veniceBiennale-prototype\ArduinoCore\ArduinoCore.cppproj", "{DB2C8331-E197-41C7-B54E-E801429F1F15}"
-EndProject
 Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "veniceBiennale-prototype", "veniceBiennale-prototype\veniceBiennale-prototype\veniceBiennale-prototype.cppproj", "{DCE6C7E3-EE26-4D79-826B-08594B9AD897}"
+EndProject
+Project("{E66E83B9-2572-4076-B26E-6BE79FF3018A}") = "ArduinoCore", "veniceBiennale-prototype\ArduinoCore\ArduinoCore.cppproj", "{DB2C8331-E197-41C7-B54E-E801429F1F15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
