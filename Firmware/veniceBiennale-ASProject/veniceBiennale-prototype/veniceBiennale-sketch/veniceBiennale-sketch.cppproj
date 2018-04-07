@@ -13,21 +13,21 @@
     <ArduinoProjectType>Sketch</ArduinoProjectType>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <Name>veniceBiennale-IR</Name>
-    <RootNamespace>veniceBiennale-IR</RootNamespace>
+    <Name>veniceBiennale-sketch</Name>
+    <RootNamespace>veniceBiennale-sketch</RootNamespace>
     <ArduinoIdeDir>C:\Program Files (x86)\Arduino</ArduinoIdeDir>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
     <CacheFlash>true</CacheFlash>
     <ProgFlashFromRam>true</ProgFlashFromRam>
-    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <RamSnippetAddress />
     <UncachedRange />
     <preserveEEPROM>true</preserveEEPROM>
-    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <OverrideVtorValue />
     <BootSegment>2</BootSegment>
     <eraseonlaunchrule>1</eraseonlaunchrule>
-    <AssemblyName>veniceBiennale-IR</AssemblyName>
+    <AssemblyName>veniceBiennale-sketch</AssemblyName>
     <ResetRule>0</ResetRule>
     <EraseKey />
     <AsfFrameworkConfig>
@@ -42,22 +42,6 @@
   </dependencies>
 </framework-data>
     </AsfFrameworkConfig>
-    <avrtool>com.atmel.avrdbg.tool.atmelice</avrtool>
-    <avrtoolserialnumber>J41800031082</avrtoolserialnumber>
-    <avrdeviceexpectedsignature>0x10010305</avrdeviceexpectedsignature>
-    <avrtoolinterface>SWD</avrtoolinterface>
-    <com_atmel_avrdbg_tool_atmelice>
-      <ToolOptions>
-        <InterfaceProperties>
-          <SwdClock>2000000</SwdClock>
-        </InterfaceProperties>
-        <InterfaceName>SWD</InterfaceName>
-      </ToolOptions>
-      <ToolType>com.atmel.avrdbg.tool.atmelice</ToolType>
-      <ToolNumber>J41800031082</ToolNumber>
-      <ToolName>Atmel-ICE</ToolName>
-    </com_atmel_avrdbg_tool_atmelice>
-    <avrtoolinterfaceclock>2000000</avrtoolinterfaceclock>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -281,6 +265,12 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Doppler.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Doppler.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="FanChannel.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -308,7 +298,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ArduinoCore\ArduinoCore.cppproj">
       <Name>ArduinoCore</Name>
-      <Project>1e7ed4c5-b4a7-4b02-85e5-2cd591127833</Project>
+      <Project>bd740e04-5c79-4e88-ba52-cb4609aca076</Project>
       <Private>True</Private>
     </ProjectReference>
   </ItemGroup>

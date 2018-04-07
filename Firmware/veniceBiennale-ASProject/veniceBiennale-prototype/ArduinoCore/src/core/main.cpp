@@ -44,7 +44,7 @@ int main( void )
   USBDevice.attach();
 #endif
 
-  //setup();
+  setup();
 
   for (;;)
   {
