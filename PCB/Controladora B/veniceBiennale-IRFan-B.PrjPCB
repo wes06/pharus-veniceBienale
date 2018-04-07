@@ -38,6 +38,23 @@ PrefsVaultGUID=
 PrefsRevisionGUID=
 
 [Document1]
+DocumentPath=veniceBiennale-IRFan-B.PcbDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=TLWURTQJ
+
+[Document2]
 DocumentPath=FETs.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -54,7 +71,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=EXAUMOTQ
 
-[Document2]
+[Document3]
 DocumentPath=MCU.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -71,7 +88,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=LOVFSXEU
 
-[Document3]
+[Document4]
 DocumentPath=SMPS-3V.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -88,7 +105,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=PKRUTECY
 
-[Document4]
+[Document5]
 DocumentPath=SMPS-5V.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -104,23 +121,6 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=INVEOBFP
-
-[Document5]
-DocumentPath=veniceBienale-IRFan-B.PcbDoc
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=TLWURTQJ
 
 [Document6]
 DocumentPath=veniceB-IRController-TopLevel-B.SchDoc
@@ -172,82 +172,6 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
-
-[GeneratedDocument1]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B-RoundHoles.TXT
-DItemRevisionGUID=
-
-[GeneratedDocument2]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B-SlotHoles.TXT
-DItemRevisionGUID=
-
-[GeneratedDocument3]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.DRR
-DItemRevisionGUID=
-
-[GeneratedDocument4]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.EXTREP
-DItemRevisionGUID=
-
-[GeneratedDocument5]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.G1
-DItemRevisionGUID=
-
-[GeneratedDocument6]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.G2
-DItemRevisionGUID=
-
-[GeneratedDocument7]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.GBL
-DItemRevisionGUID=
-
-[GeneratedDocument8]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.GBO
-DItemRevisionGUID=
-
-[GeneratedDocument9]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.GBS
-DItemRevisionGUID=
-
-[GeneratedDocument10]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.GM5
-DItemRevisionGUID=
-
-[GeneratedDocument11]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.GPB
-DItemRevisionGUID=
-
-[GeneratedDocument12]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.GPT
-DItemRevisionGUID=
-
-[GeneratedDocument13]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.GTL
-DItemRevisionGUID=
-
-[GeneratedDocument14]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.GTO
-DItemRevisionGUID=
-
-[GeneratedDocument15]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.GTP
-DItemRevisionGUID=
-
-[GeneratedDocument16]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.GTS
-DItemRevisionGUID=
-
-[GeneratedDocument17]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.LDP
-DItemRevisionGUID=
-
-[GeneratedDocument18]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.REP
-DItemRevisionGUID=
-
-[GeneratedDocument19]
-DocumentPath=Project Outputs for veniceBienale-IRFan-B\Fabrication\vB-IRF-B.RUL
-DItemRevisionGUID=
 
 [Configuration1]
 Name=Sources
