@@ -9,7 +9,7 @@
 #ifndef __IRIN_H__
 #define __IRIN_H__
 
-#define SAMPLE_COUNT 100
+#define SAMPLE_COUNT 10
 
 class IRIn
 {
